@@ -16,9 +16,14 @@
   <link rel="stylesheet" href="{{ asset('AdminLTE-3.2.0/dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
   <link rel="stylesheet" href="{{ asset('AdminLTE-3.2.0/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
+  <!-- SweetAlert2 -->
+  <link rel="stylesheet" href="{{ asset('AdminLTE-3.2.0/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }}">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
   <script src="{{ asset('js/app.js') }}" defer></script>
+  <script src="https://kit.fontawesome.com/dcb1bbced2.js" crossorigin="anonymous"></script>
+
+  @yield('css')
 </head>
 
 <body>
@@ -61,7 +66,7 @@
 
                     <!-- Unidades Productivas -->
                     <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link text-success">
+                        <a href="{{ route('usuarios.create') }}" class="nav-link text-success">
                              <i class="fas fa-user"></i>&nbsp;
                             <p>
                                 Gestion Usuarios
@@ -70,15 +75,15 @@
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                           <a href=""  class="nav-link text-dark">
+                           <a href="{{ route('usuarios.create') }}"  class="nav-link text-dark">
                                     <i class="nav-icon fas fa-edit"></i>
                                     <p>Ingreso</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href=""  class="nav-link text-dark">
+                                <a href="{{ route('usuarios.index') }}"  class="nav-link text-dark">
                                     <i class="nav-icon fas fa-clipboard-list"></i>
-                                    <p>Listas</p>
+                                    <p>Lista de Usuarios</p>
                                 </a>
                             </li>
                         </ul>
@@ -89,22 +94,21 @@
                         <a href="#" class="nav-link text-success">
                             <i class="fas fa-warehouse"></i>&nbsp;
                             <p>
-                                Bodega Finca
+                                Provedores
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
                         <ul class="nav nav-treeview">
                             <li class="nav-item">
-                                <a href= ""
-                                    class="nav-link text-dark">
-                                    <i class="nav-icon fas fa-box"></i>
-                                    <p>Insumos</p>
+                           <a href="{{ route('proveedores.create') }}"  class="nav-link text-dark">
+                                    <i class="nav-icon fas fa-edit"></i>
+                                    <p>Ingreso</p>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="" class="nav-link text-dark">
-                                    <i class="nav-icon fas fa-tools"></i>
-                                    <p>Herramientas</p>
+                                <a href="{{ route('proveedores.index') }}" class="nav-link text-dark">
+                                    <i class="nav-icon fas fa-clipboard-list"></i>
+                                    <p>Lista de Proveedores</p>
                                 </a>
                             </li>
                         </ul>
@@ -191,6 +195,22 @@
     <script src="{{ asset('AdminLTE-3.2.0/dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('AdminLTE-3.2.0/dist/js/demo.js') }}"></script>
+    <!-- SweetAlert2 -->
+    <script src="{{ asset('AdminLTE-3.2.0/plugins/sweetalert2/sweetalert2.all.min.js') }}"></script>
+
+    @if(session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: '¡Éxito!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 3000
+            });
+        </script>
+    @endif
+
+    @yield('js')
 </body>
 
 </html>
